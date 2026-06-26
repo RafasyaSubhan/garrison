@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'constants/app_colors.dart';
 import 'widgets/navbar.dart';
 import 'widgets/home_header.dart';
+import 'widgets/streak_card.dart';
 
 void main() {
   runApp(const GarrisonApp());
@@ -32,10 +33,12 @@ class HomePage extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               HomeHeader(),
+              SizedBox(height: 20),
+              StreakCard(),
             ],
           ),
         ),

@@ -113,6 +113,12 @@ class AppTextStyles {
     fontSize: 12,
   );
 
+  static const TextStyle p7 = TextStyle(
+    fontFamily: 'JakartaSans',
+    fontWeight: FontWeight.w400,
+    fontSize: 8,
+  );
+
   // Pixel
   static const TextStyle c1 = TextStyle(
     fontFamily: 'PixelifySans',

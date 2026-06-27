@@ -5,15 +5,18 @@ import '../constants/app_colors.dart';
 import '../constants/app_assets.dart';
 import '../constants/app_text_styles.dart';
 
-class Navbar extends StatefulWidget {
-  const Navbar({super.key});
+import '../pages/home_page.dart';
+import '../pages/shop_page.dart';
+import '../pages/history_page.dart';
+import '../pages/profile_page.dart';
 
-  @override
-  State<Navbar> createState() => _NavbarState();
-}
+class Navbar extends StatelessWidget {
+  final int currentIndex;
 
-class _NavbarState extends State<Navbar> {
-  int selectedIndex = 0;
+  const Navbar({
+    super.key,
+    required this.currentIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class _NavbarState extends State<Navbar> {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 4,
             offset: const Offset(0, -2),
           ),
@@ -40,37 +43,22 @@ class _NavbarState extends State<Navbar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildNavItem(
-            iconPath: AppAssets.home,
-            label: 'Home',
-            index: 0,
-          ),
-          _buildNavItem(
-            iconPath: AppAssets.shop,
-            label: 'Shop',
-            index: 1,
-          ),
-          _buildNavItem(
-            iconPath: AppAssets.history,
-            label: 'History',
-            index: 2,
-          ),
-          _buildNavItem(
-            iconPath: AppAssets.profile,
-            label: 'Profile',
-            index: 3,
-          ),
+          _buildNavItem(context, iconPath: AppAssets.home, label: 'Home', index: 0),
+          _buildNavItem(context, iconPath: AppAssets.shop, label: 'Shop', index: 1),
+          _buildNavItem(context, iconPath: AppAssets.history, label: 'History', index: 2),
+          _buildNavItem(context, iconPath: AppAssets.profile, label: 'Profile', index: 3),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem({
-    required String iconPath,
-    required String label,
-    required int index,
-  }) {
-    final bool isActive = selectedIndex == index;
+  Widget _buildNavItem(
+      BuildContext context, {
+        required String iconPath,
+        required String label,
+        required int index,
+      }) {
+    final bool isActive = currentIndex == index;
 
     final Color currentColor =
     isActive ? AppColors.textPrimary : AppColors.textSecondary;
@@ -78,9 +66,33 @@ class _NavbarState extends State<Navbar> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
+        if (isActive) return;
+
+        Widget targetPage;
+        switch (index) {
+          case 1:
+            targetPage = const ShopPage();
+            break;
+          case 2:
+            targetPage = const HistoryPage();
+            break;
+          case 3:
+            targetPage = const ProfilePage();
+            break;
+          case 0:
+          default:
+            targetPage = const HomePage();
+            break;
+        }
+
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => targetPage,
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+        );
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,

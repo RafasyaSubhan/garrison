@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:garrison/constants/app_text_styles.dart';
 
 import '../constants/app_assets.dart';
 import '../constants/app_colors.dart';
@@ -36,10 +37,9 @@ class HomeHeader extends StatelessWidget {
               const SizedBox(width: 6),
               Text(
                 '400',
-                style: TextStyle(
-                  color: AppColors.gold,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: AppTextStyles.c5.copyWith(
+                  color: AppColors.gold
+                )
               ),
             ],
           ),

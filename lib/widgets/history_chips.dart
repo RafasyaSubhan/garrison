@@ -33,7 +33,7 @@ class _HistoryChipsState extends State<HistoryChips> {
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                   color: isActive ? AppColors.goldDark : AppColors.backgroundSurface,
                   borderRadius: BorderRadius.circular(100),

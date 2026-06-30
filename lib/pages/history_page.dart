@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
-import '../constants/app_text_styles.dart';
+
+import '../widgets/header.dart';
 import '../widgets/navbar.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -10,13 +10,10 @@ class HistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Text(
-            'HISTORY SCREEN',
-            style: AppTextStyles.h4.copyWith(
-              color: AppColors.textPrimary,
-            ),
-          ),
+        child: Column(
+          children: [
+            const AppHeader(),
+          ],
         ),
       ),
       bottomNavigationBar: const Navbar(currentIndex: 2),
